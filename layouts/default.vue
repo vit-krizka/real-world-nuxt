@@ -6,12 +6,24 @@
 </template>
 
 <script>
-import NavBar from "~/components/NavBar.vue";
+import NavBar from "~/components/NavBar.vue"
 export default {
     components: {
         NavBar
+    },
+    head() {
+        return {
+            titleTemplate: 'Real World Events - %s',
+            meta: [
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Where you can find all the events taking place in your neighborhood'
+                }
+            ]
+        }
     }
-};
+}
 </script>
 
 <style>
