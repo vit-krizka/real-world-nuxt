@@ -15,23 +15,19 @@ export default {
       title: 'Event Listing'
     }
   },
-  // ES6 destructuring (context.$axios)
-  asyncData({ $axios, error }) {
-    return $axios.get("http://localhost:3000/events").then(response => {
+  async asyncData({ $axios, error }) {
+    try {
+      const response = await $axios.get("http://localhost:3000/events");
       return {
         events: response.data
       }
-    }).catch(e => {
-      error({ statusCode: 503, message: 'Unable to fetch events at the moment. Please try again.' })
-    })
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch events events at this time'
+      })
+    }
   },
-  // asyncDate(context) {
-  //   return context.$axios.get("http://localhost:3000/events").then(response => {
-  //     return {
-  //       events: response.data
-  //     }
-  //   })
-  // }
   components: {
     EventCard
   }
